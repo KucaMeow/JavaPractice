@@ -3,39 +3,31 @@ package Triangles;
 public class Pyramid extends Triangle {
     private int z, heigh;
     public Pyramid(int x, int y, int a, int b, int c, int d){
-        side1 = a;
-        side2 = b;
-        side3 = c;
-        heigh = d;
-        x = x;
-        y = y;
+        this.setSides(a, b, c);
+        this.heigh = d;
+        this.setStartPos(x, y);
     }
     public Pyramid(int a, int b, int c, int d){
-        side1 = a;
-        side2 = b;
-        side3 = c;
-        heigh = d;
+        this.setSides(a, b, c);
+        this.heigh = d;
     }
     public Pyramid(){
-        side1 = 10;
-        side2 = 10;
-        side3 = 10;
-        heigh = 10;
+        this.setSides(10, 10, 10);
+        this.heigh = 10;
     }
 
     void setStartPos(int x, int y, int z){
-        x = x;
-        y = y;
-        z = z;
+        this.setStartPos(x, y);
+        this.z = z;
     }
     public void writeCreatedPyramid(){
-        System.out.println(this.getClass().getName() + " created with center in x:" + this.x + " y:" + this.y + " z: " + this.z);
+        System.out.println(this.getClass().getName() + " created with center in x:" + this.getX() + " y:" + this.getY() + " z: " + this.z);
     }
 
 
     public double volume(){
-        double p = (side1 + side2 + side3)/2;
-        return (1/3)*heigh*Math.sqrt(p*(p-side3)*(p-side2)*(p-side1));
+        double p = (this.getSide1() + this.getSide2() + this.getSide3())/2;
+        return (1/3)*heigh*Math.sqrt(p*(p - this.getSide3())*(p - this.getSide2())*(p - this.getSide1()));
     }
 
     public void writeVolume(){
