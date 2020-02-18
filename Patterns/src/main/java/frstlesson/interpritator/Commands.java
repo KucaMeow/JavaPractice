@@ -2,6 +2,7 @@ package frstlesson.interpritator;
 
 import frstlesson.iterator.KladrTree;
 import frstlesson.iterator.Node;
+import frstlesson.singleton.TreeSaverSingleton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,10 @@ public class Commands {
             }
             nodeToDelete.getParent().getChildren().remove(nodeToDelete);
         }
+        else if(elems[0].equals("save")) {
+            TreeSaverSingleton.getInstance().save(kt);
+        }
+
     }
 
     private Node getNode (String name, int level) {

@@ -4,9 +4,9 @@ import frstlesson.facade.TreeSaver;
 import frstlesson.facade.TreeSaverJson;
 
 public class TreeSaverSingleton {
-    TreeSaver treeSaver;
+    private static TreeSaver treeSaver;
 
-    public TreeSaver TreeSaver() {
+    public static TreeSaver getInstance() {
         if(treeSaver == null) {
             treeSaver = new TreeSaverJson();
         }

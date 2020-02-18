@@ -77,7 +77,7 @@ public class KladrTree implements Iterable<Node> {
 
         @Override
         public boolean hasNext() {
-            return queue.isEmpty();
+            return !queue.isEmpty();
         }
 
         @Override
@@ -89,29 +89,35 @@ public class KladrTree implements Iterable<Node> {
 
     private class IteratorDFS implements Iterator<Node> {
 
-        private Stack<Node> stack;
+        private Stack<Node> stackToReturn;
 
         public IteratorDFS() {
-            stack = new Stack<>();
+            Stack<Node> stack = new Stack<>();
+            stackToReturn = new Stack<>();
             stack.push(root);
+
+            //Чтоб поиск вглубину начинался не с корня, а с листьев
+            while (!stack.isEmpty()) {
+                Node node = stack.pop();
+                if (node.children != null) {
+                    for (Node child : node.children) {
+                        if (child != null) {
+                            stack.push(child);
+                        }
+                    }
+                }
+                stackToReturn.push(node);
+            }
         }
 
         @Override
         public boolean hasNext() {
-            return stack.isEmpty();
+            return !stackToReturn.isEmpty();
         }
 
         @Override
         public Node next() {
-            Node node = stack.pop();
-            if (node.children != null) {
-                for (Node child : node.children) {
-                    if (child != null) {
-                        stack.push(child);
-                    }
-                }
-            }
-            return node;
+            return stackToReturn.pop();
         }
     }
 
@@ -126,7 +132,7 @@ public class KladrTree implements Iterable<Node> {
 
         @Override
         public boolean hasNext() {
-            return queue.isEmpty();
+            return !queue.isEmpty();
         }
 
         @Override
