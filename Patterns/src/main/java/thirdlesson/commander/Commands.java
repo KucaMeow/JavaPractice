@@ -2,6 +2,7 @@ package thirdlesson.commander;
 
 import forthlesson.prototype.TaskBuilder;
 import forthlesson.proxy.TaskInterface;
+import forthlesson.proxy.TaskWithPermission;
 import thirdlesson.Main;
 import thirdlesson.Task;
 import thirdlesson.TaskImpl;
@@ -16,7 +17,7 @@ public class Commands {
                 for(int i = 2; i < command.length; i++) {
                     desk.append(command[i]).append(" ");
                 }
-                Task t = new TaskImpl(desk.toString());
+                Task t = new TaskWithPermission(desk.toString());
                 Main.tasks.put(t.getId(), t);
                 System.out.println(t.toString());
             }
