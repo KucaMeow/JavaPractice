@@ -24,5 +24,12 @@ public class Commands {
         else if(command[0].equals("forward")) {
             Main.web.forward();
         }
+        else if(command[0].equals("save")) {
+            Main.web.saveStructrue();
+        }
+        else if(command[0].equals("load")) {
+            Main.web.loadStructure();
+            System.out.println(Main.web.links.toString());
+        }
     }
 }

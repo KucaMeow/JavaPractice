@@ -1,21 +1,29 @@
 package fifthlesson;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.*;
 import java.util.*;
 
 public class Web {
-    private Map<String, Set<String>> links;
+    public Map<String, List<String>> links;
     private String currentLink;
-    private List<Memento> mementos;
-    private int curHistoryIndex;
+//    private List<Memento> mementos;
+    private Stack<Memento> back;
+    private Stack<Memento> forward;
+//    private int curHistoryIndex;
 
     public Web () {
         links = new HashMap<>();
-        mementos = new ArrayList<>();
-        curHistoryIndex = 0;
+//        mementos = new ArrayList<>();
+        back = new Stack<>();
+        forward = new Stack<>();
+//        curHistoryIndex = 0;
     }
 
     public void addLink (String link) {
-        links.put(link, new HashSet<>());
+        links.put(link, new ArrayList<>());
         if(currentLink == null) {
             currentLink = link;
         }
@@ -41,8 +49,10 @@ public class Web {
         }
     }
     public void back() {
-        if(curHistoryIndex > 0) {
-            currentLink = mementos.get(--curHistoryIndex).getCurrentLink();
+        if(!back.isEmpty()) {
+//            currentLink = mementos.get(--curHistoryIndex).getCurrentLink();
+            currentLink = back.peek().getCurrentLink();
+            forward.push(back.pop());
             System.out.println("We back to " + currentLink);
         }
         else {
@@ -50,8 +60,10 @@ public class Web {
         }
     }
     public void forward() {
-        if(curHistoryIndex < mementos.size()-1) {
-            currentLink = mementos.get(++curHistoryIndex).getCurrentLink();
+        if(!forward.isEmpty()) {
+//            currentLink = mementos.get(++curHistoryIndex).getCurrentLink();
+            currentLink = forward.peek().getCurrentLink();
+            back.push(forward.pop());
             System.out.println("We forward to " + currentLink);
         }
         else {
@@ -59,7 +71,28 @@ public class Web {
         }
     }
     private void saveState() {
-        mementos.add(curHistoryIndex, new Memento(currentLink));
-        mementos = mementos.subList(0, ++curHistoryIndex);
+//        mementos.add(curHistoryIndex, new Memento(currentLink));
+//        mementos = mementos.subList(0, ++curHistoryIndex);
+        if(!forward.isEmpty()) back.push(forward.pop());
+        forward = new Stack<>();
+        forward.push(new Memento(currentLink));
+    }
+
+    public void saveStructrue () {
+        try {
+            PrintWriter pw = new PrintWriter(new FileOutputStream("web.web"));
+            pw.println((new ObjectMapper()).writeValueAsString(links));
+            pw.flush();
+            pw.close();
+        } catch (FileNotFoundException | JsonProcessingException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+    public void loadStructure () {
+        try {
+            links = (new ObjectMapper()).readValue(new File("web.web"), links.getClass());
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
     }
 }
