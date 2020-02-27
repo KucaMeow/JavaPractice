@@ -1,4 +1,9 @@
-package fifthlesson;
+package fifthlesson.factory;
+
+import fifthlesson.webs.SlowWeb;
+import fifthlesson.webs.Web;
+import fifthlesson.bridge.LightTheme;
+import fifthlesson.bridge.Theme;
 
 public class OldWebCreator implements Factory{
     @Override

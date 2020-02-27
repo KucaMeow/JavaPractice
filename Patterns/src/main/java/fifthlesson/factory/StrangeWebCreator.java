@@ -1,4 +1,9 @@
-package fifthlesson;
+package fifthlesson.factory;
+
+import fifthlesson.webs.StupidWeb;
+import fifthlesson.webs.Web;
+import fifthlesson.bridge.StrangeTheme;
+import fifthlesson.bridge.Theme;
 
 public class StrangeWebCreator implements Factory {
     @Override

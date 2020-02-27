@@ -1,4 +1,4 @@
-package fifthlesson;
+package fifthlesson.snapshot;
 
 public class Memento {
     private String currentLink;

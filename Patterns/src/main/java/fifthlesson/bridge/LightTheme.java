@@ -1,4 +1,4 @@
-package fifthlesson;
+package fifthlesson.bridge;
 
 public class LightTheme implements Theme {
     @Override

@@ -1,4 +1,8 @@
-package fifthlesson;
+package fifthlesson.factory;
+
+import fifthlesson.webs.Web;
+import fifthlesson.bridge.DarkTheme;
+import fifthlesson.bridge.Theme;
 
 public class NormalWebCreator implements Factory {
     @Override

@@ -1,5 +1,11 @@
 package fifthlesson;
 
+import fifthlesson.factory.Factory;
+import fifthlesson.factory.NormalWebCreator;
+import fifthlesson.factory.OldWebCreator;
+import fifthlesson.factory.StrangeWebCreator;
+import fifthlesson.webs.Web;
+
 import java.util.Scanner;
 
 public class Main {

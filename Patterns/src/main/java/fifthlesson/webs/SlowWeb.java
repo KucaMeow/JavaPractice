@@ -1,4 +1,6 @@
-package fifthlesson;
+package fifthlesson.webs;
+
+import fifthlesson.bridge.Theme;
 
 import java.util.Arrays;
 
