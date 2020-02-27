@@ -41,6 +41,14 @@ public class Commands {
             }
             System.out.println(t.toString());
         }
+        else if (command[0].equals("show")) {
+            int id = Integer.parseInt(command[1]);
+            if(Main.tasks.get(id) == null) {
+                System.out.println("No such task");
+                return;
+            }
+            System.out.println(Main.tasks.get(id).toString());
+        }
         else if(command[0].equals("up")) {
             int id = Integer.parseInt(command[1]);
             int argum = -1;
@@ -59,6 +67,10 @@ public class Commands {
             String argum = arg.toString();
 
             Main.tasks.get(id).down(argum);
+
+        }
+        else if(command[0].equals("select")) {
+            //select (id = "1" and testerId = "10") or text = "hello"
 
         }
     }

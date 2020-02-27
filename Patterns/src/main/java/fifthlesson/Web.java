@@ -13,13 +13,15 @@ public class Web {
     private Stack<Memento> back;
     private Stack<Memento> forward;
 //    private int curHistoryIndex;
+    private Theme theme;
 
-    public Web () {
+    public Web (Theme theme) {
         links = new HashMap<>();
 //        mementos = new ArrayList<>();
         back = new Stack<>();
         forward = new Stack<>();
 //        curHistoryIndex = 0;
+        this.theme = theme;
     }
 
     public void addLink (String link) {
@@ -94,5 +96,8 @@ public class Web {
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
+    }
+    public void showTheme () {
+        theme.whichTheme();
     }
 }
