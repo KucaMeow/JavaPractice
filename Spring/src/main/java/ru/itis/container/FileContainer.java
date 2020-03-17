@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.*;
 
-@Component("file")
 public class FileContainer implements Container{
     private File file;
 
