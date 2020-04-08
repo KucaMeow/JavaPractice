@@ -21,7 +21,12 @@ public class AddController {
 
     @PostMapping("/add")
     public String addUser(@ModelAttribute("userDto")UserDto userDto) {
-        userRepository.add(userDto);
-        return "redirect:/add";
+        if(userRepository.validate(userDto)) {
+            userRepository.add(userDto);
+            return "redirect:/list";
+        }
+        else {
+            return "redirect:/add?error";
+        }
     }
 }

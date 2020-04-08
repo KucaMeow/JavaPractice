@@ -12,4 +12,5 @@ public interface UserRepository {
     List<User> getAll();
     void update(User user);
     User find(long id);
+    boolean validate(UserDto user);
 }

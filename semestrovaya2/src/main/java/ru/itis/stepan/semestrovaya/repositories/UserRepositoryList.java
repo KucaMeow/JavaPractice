@@ -13,6 +13,7 @@ public class UserRepositoryList implements UserRepository{
 
     List<User> users;
     private static long ids = 0;
+    public static final int NICKNAME_MIN_LENGTH = 8;
 
     public UserRepositoryList() {
         users = new ArrayList<>();
@@ -57,5 +58,28 @@ public class UserRepositoryList implements UserRepository{
             }
         }
         return null;
+    }
+
+    private boolean nicknameIsAvailable(UserDto userDto) {
+        for(User user : users) {
+            if(user.getNickname().equals(userDto.getNickname()))
+                return false;
+        }
+        return true;
+    }
+
+    private boolean nicknameHasCorrectLength(UserDto userDto) {
+        return userDto.getNickname().length() >= NICKNAME_MIN_LENGTH;
+    }
+
+    private boolean passwordIsValid(UserDto userDto) {
+        boolean containLetter = userDto.getPassword().matches(".*\\d+.*");
+        boolean containDigit = userDto.getPassword().matches(".*[a-zA-Z]+.*");
+        return containDigit && containLetter;
+    }
+
+    @Override
+    public boolean validate(UserDto user) {
+        return (nicknameIsAvailable(user) && nicknameHasCorrectLength(user) && passwordIsValid(user));
     }
 }
