@@ -2,13 +2,15 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Edit page</title>
+    <title>Edit</title>
 </head>
 <body>
-<ul>
-    <li th:each="user : ${users}" th:text="'id = ' + ${user.id} +
-    ', nickname = ' + ${user.nickname} +
-    ', password = ' + ${user.password}"></li>
-</ul>
+<form method="get" action="/update">
+    <div th:text="${user.id}"></div>
+    <input name="id" type="hidden" th:value="${user.id}">
+    <input name="nickname" type="text" th:value="${user.nickname}">
+    <input name="password" type="text" th:value="${user.password}">
+    <input type="submit" value="Edit">
+</form>
 </body>
 </html>

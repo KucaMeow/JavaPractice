@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit page</title>
+</head>
+<body>
+<ul>
+    <div th:each="user : ${users}">
+        <li th:text="'id = ' + ${user.id} +
+        ', nickname = ' + ${user.nickname} +
+        ', password = ' + ${user.password}"></li>
+        <form method="get" action="edit">
+            <input name="id" type="hidden" th:value="${user.id}">
+            <input type="submit" value="Edit">
+        </form>
+        <form method="post" action="edit">
+            <input name="id" type="hidden" th:value="${user.id}">
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+</ul>
+<form method="get" action="/add">
+    <input type="submit" value="Add user">
+</form>
+</body>
+</html>

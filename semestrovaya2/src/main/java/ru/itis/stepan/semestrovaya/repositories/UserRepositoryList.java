@@ -42,4 +42,20 @@ public class UserRepositoryList implements UserRepository{
     public List<User> getAll() {
         return new ArrayList<>(users);
     }
+
+    @Override
+    public void update(User user) {
+        find(user.getId()).setNickname(user.getNickname());
+        find(user.getId()).setPassword(user.getPassword());
+    }
+
+    @Override
+    public User find(long id) {
+        for (User user : users) {
+            if(user.getId() == id) {
+                return user;
+            }
+        }
+        return null;
+    }
 }

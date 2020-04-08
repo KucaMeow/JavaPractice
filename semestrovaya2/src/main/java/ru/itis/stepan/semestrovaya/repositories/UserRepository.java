@@ -10,4 +10,6 @@ public interface UserRepository {
     void delete(User user);
     User get(String login, String password);
     List<User> getAll();
+    void update(User user);
+    User find(long id);
 }
