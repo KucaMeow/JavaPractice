@@ -11,10 +11,10 @@
         ', nickname = ' + ${user.nickname} +
         ', password = ' + ${user.password} +
         ', organization_name = ' + ${user.organization_name}"></li>
-        <form method="get" action="user/${user.id}/edit">
+        <form method="get" th:action="'user/' + ${user.id} + '/edit'">
             <input type="submit" value="Edit">
         </form>
-        <form method="post" action="user/${user.id}/delete">
+        <form method="post" th:action="'user/' + ${user.id} + '/delete'">
             <input type="submit" value="Delete">
         </form>
     </div>
