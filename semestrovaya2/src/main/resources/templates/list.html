@@ -9,19 +9,22 @@
     <div th:each="user : ${users}">
         <li th:text="'id = ' + ${user.id} +
         ', nickname = ' + ${user.nickname} +
-        ', password = ' + ${user.password}"></li>
-        <form method="get" action="edit">
-            <input name="id" type="hidden" th:value="${user.id}">
+        ', password = ' + ${user.password} +
+        ', organization_name = ' + ${user.organization_name}"></li>
+        <form method="get" action="user/${user.id}/edit">
             <input type="submit" value="Edit">
         </form>
-        <form method="post" action="edit">
-            <input name="id" type="hidden" th:value="${user.id}">
+        <form method="post" action="user/${user.id}/delete">
             <input type="submit" value="Delete">
         </form>
     </div>
 </ul>
 <form method="get" action="/add">
     <input type="submit" value="Add user">
+</form>
+<form method="get">
+    <input type="text" name="name_substr">
+    <input type="submit" value="Filter">
 </form>
 </body>
 </html>
