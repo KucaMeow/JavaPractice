@@ -1,4 +1,4 @@
-package ru.itis.stepan.semestrovaya.model;
+package ru.itis.stepan.semestrovaya.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,4 +13,5 @@ public class User {
     private Long id;
     private String nickname;
     private String password;
+    private String organization_name;
 }

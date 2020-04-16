@@ -1,4 +1,4 @@
-package ru.itis.stepan.semestrovaya.controller;
+package ru.itis.stepan.semestrovaya.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
