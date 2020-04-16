@@ -2,10 +2,9 @@ package ru.itis.stepan.semestrovaya.repositories;
 
 import org.springframework.stereotype.Repository;
 import ru.itis.stepan.semestrovaya.dto.UserDto;
-import ru.itis.stepan.semestrovaya.model.User;
+import ru.itis.stepan.semestrovaya.models.User;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -21,7 +20,12 @@ public class UserRepositoryList implements UserRepository{
 
     @Override
     public void add(UserDto user) {
-        users.add(User.builder().nickname(user.getNickname()).password(user.getPassword()).id(ids++).build());
+        users.add(User.builder()
+                .nickname(user.getNickname())
+                .password(user.getPassword())
+                .id(ids++)
+                .organization_name(user.getOrganization_name())
+                .build());
     }
 
     @Override
@@ -48,6 +52,7 @@ public class UserRepositoryList implements UserRepository{
     public void update(User user) {
         find(user.getId()).setNickname(user.getNickname());
         find(user.getId()).setPassword(user.getPassword());
+        find(user.getId()).setOrganization_name(user.getOrganization_name());
     }
 
     @Override
