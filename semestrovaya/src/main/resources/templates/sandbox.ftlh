@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,9 +16,9 @@
             type="text/javascript"></script>
 </head>
 <body>
-<jsp:include page="header.ftlh"/>
+<#include "header.ftlh"/>
 <main style="padding-top: 6rem">
-    <jsp:include page="editor.ftlh"/>
+    <#include "editor.ftlh"/>
 </main>
 </body>
 </html>

@@ -1,8 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Title</title>
-</head>
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark   ">
@@ -19,12 +15,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/courses">Курсы</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/create/list">Редактор</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <#include "checkLogin.ftlh"/>
             </ul>
         </div>
     </nav>
 </header>
+<br>
+<br>
+<br>
 </body>
 </html>

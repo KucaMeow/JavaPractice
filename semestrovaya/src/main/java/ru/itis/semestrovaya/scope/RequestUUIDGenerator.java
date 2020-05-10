@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Data
 @Component
-@RequestScope
+//@RequestScope
 public class RequestUUIDGenerator {
 
     private String id;

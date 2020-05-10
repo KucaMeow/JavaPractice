@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.filter.GenericFilterBean;
 import ru.itis.semestrovaya.filter.AnyRequestLogFilter;
@@ -28,8 +29,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+//    @Autowired
+//    AnyRequestLogFilter anyRequestLogFilter;
+
     @Autowired
-    AnyRequestLogFilter anyRequestLogFilter;
+    AuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -41,9 +45,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/error").permitAll()
                 .antMatchers("/login").not().authenticated()
                 .antMatchers("/register").not().authenticated()
-                .antMatchers("/sandbox").authenticated()
                 .antMatchers("/courses").authenticated()
-                .antMatchers("/editor").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/create/*", "/edit/*").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/chat").authenticated()
                 //Тут продолжать разрешения, если надо
 
@@ -54,14 +57,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .defaultSuccessUrl("/")
                 .failureForwardUrl("/login?error=true")
-
+                .successHandler(authenticationSuccessHandler)
 
                 .and()
                 .rememberMe().key("Don'tShowItToAnyone")
-                .rememberMeParameter("remember-me")
+                .rememberMeParameter("remember-me");
 
-                .and()
-                .addFilterAfter(anyRequestLogFilter, BasicAuthenticationFilter.class);
+//                .and()
+//                .addFilterAfter(anyRequestLogFilter, BasicAuthenticationFilter.class);
     }
 
     @Autowired
@@ -69,4 +72,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
+
+
 }
