@@ -145,6 +145,23 @@
             "            <strong>Правильно)</strong>\n" +
             "        </div>");
     }
+    function incorrectWithTime(time) {
+        $('#my_alerts').append("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+            "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+            "                <span aria-hidden=\"true\">&times;</span>\n" +
+            "            </button>\n" +
+            "            <strong>Не правильно( Время тестов:" + time + " мс</strong>\n" +
+            "        </div>");
+    }
+
+    function correctWithTime(time) {
+        $('#my_alerts').append("<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n" +
+            "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+            "                <span aria-hidden=\"true\">&times;</span>\n" +
+            "            </button>\n" +
+            "            <strong>Правильно) Время тестов:" + time + " мс</strong>\n" +
+            "        </div>");
+    }
 
     function codeTest(id) {
         let codeText = window["editor_" + id].getValue();
@@ -154,9 +171,9 @@
             },
             function (resultObj) {
                 if (resultObj['success'] === true) {
-                    correct();
+                    correctWithTime(resultObj['time']);
                 } else {
-                    incorrect();
+                    incorrectWithTime(resultObj['time']);
                 }
             })
 

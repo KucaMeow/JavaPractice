@@ -1,4 +1,5 @@
 <!doctype html>
+<#import "spring.ftl" as spring>
 <html lang="en">
 <head>
     <title>Register</title>
@@ -14,10 +15,11 @@
 <#include "header.ftlh">
 <main style="padding-top: 6rem">
     <div class="col-3 mx-auto">
-        <form method="post">
+        <@spring.bind "form"/>
+        <form onsubmit="return send()" method="post">
             <div class="form-group">
                 <label for="">Email</label>
-                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="">
+                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="" value="${form.email}">
             </div>
             <div class="form-group">
                 <label for="">Пароль</label>
@@ -30,6 +32,14 @@
         </form>
     </div>
 </main>
+<script>
+    function send() {
+        if(!/^[a-zA-Z]\w{3,14}$/.test($('#password').val())){
+            alert("Incorrect password: The password's first character must be a letter, it must contain at least 4 characters and no more than 15 characters and no characters other than letters, numbers and the underscore may be used");
+        }
+        return /^[a-zA-Z]\w{3,14}$/.test($('#password').val());
+    }
+</script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

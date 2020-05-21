@@ -14,7 +14,7 @@
 <#include "header.ftlh"/>
 <main style="padding-top: 6rem">
     <div class="container">
-        <h1 class="text-center">{errorMsg}</h1>
+        <h1 class="text-center">${error}</h1>
         <div class="container text-center">
             <br/>
             <button type="button" class="btn btn-dark btn-lg" onclick="location.href = '/';">

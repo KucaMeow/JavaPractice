@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ru.itis.semestrovaya.config.security.details.UserDetailsImpl;
 import ru.itis.semestrovaya.model.Course;
+import ru.itis.semestrovaya.model.Lesson;
 import ru.itis.semestrovaya.repository.CousresRepository;
 
 import java.util.ArrayList;
@@ -50,5 +51,23 @@ public class CourseServiceImpl implements CoursesService {
         course.setName(name);
         course.setDescription(description);
         cousresRepository.save(course);
+    }
+
+    @Override
+    public Course getIdOfMostRelevantCourse() {
+        List<Course> courses = getAllCourses();
+        Course mcourse = null;
+        int most = 0;
+        for(Course course : courses) {
+            int temp = 0;
+            for(Lesson lesson : course.getLessons()) {
+                temp += lesson.getCourseModules().size();
+            }
+            if(temp > most) {
+                most = temp;
+                mcourse = course;
+            }
+        }
+        return mcourse;
     }
 }

@@ -2,6 +2,8 @@ package ru.itis.semestrovaya.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,19 +17,22 @@ public class RegisterController {
     private RegisterService registerService;
 
     @RequestMapping("/register")
-    public ModelAndView getRegisterPage() {
-        return new ModelAndView("register");
+    public String getRegisterPage(Model model) {
+        model.addAttribute("form", RegisterDto.builder()
+                .email("")
+                .password("")
+                .build());
+        return "register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView registerUser(RegisterDto user) {
-        ModelAndView modelAndView = new ModelAndView();
-        if(registerService.saveUser(user)) {
-            modelAndView.setViewName("login");
+    public String  registerUser(RegisterDto user, BindingResult bindingResult, Model model) {
+        if(registerService.saveUser(user) && bindingResult.getAllErrors().isEmpty()) {
+            return "login";
         }
         else {
-            modelAndView.setViewName("register");
+            model.addAttribute("form", user);
+            return "register";
         }
-        return modelAndView;
     }
 }

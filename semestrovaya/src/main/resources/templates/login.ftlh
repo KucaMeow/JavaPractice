@@ -31,11 +31,25 @@
             </label>
         </div>
         <br>
-        <button type="submit" class="btn btn-dark mr-0">Войти</button>
+        <button type="submit" class="btn btn-dark mx-auto">Войти</button>
         <br>
+
         <br>
         <small class="form-text text-muted"><a href="/register">Зарегистрироваться</a></small>
     </form>
+        <div class="or-container">
+            <br>
+            <div class="line-separator"></div>
+            <br>
+        </div>
+        <div class="row">
+            <form method="post" action="/signin/facebook">
+                <input type="hidden" name="scope" value="public_profile" />
+                <button type="submit" class="btn btn-light mx-auto">
+                    <img src="https://img.icons8.com/color/20/000000/twitter-circled.png"/> SignIn Using Twitter
+                </button>
+            </form>
+        </div>
     </div>
 </main>
 <!-- Optional JavaScript -->
@@ -50,4 +64,11 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 </body>
+<style>
+    .line-separator {
+        background-color: #ccc;
+        flex-grow: 5;
+        height: 1px
+    }
+</style>
 </html>

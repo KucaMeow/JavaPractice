@@ -60,7 +60,7 @@
                     <div class="carousel-caption text-left">
                         <h1>Самый популярный курс</h1>
                         <p>Тут будет описание курса</p>
-                        <p><a class="btn btn-lg btn-dark" href="#" role="button">Перейти к курсу</a></p>
+                        <p><a class="btn btn-lg btn-dark" href="/learn/${course.id}" role="button">Перейти к курсу ${course.name}</a></p>
                     </div>
                 </div>
             </div>
